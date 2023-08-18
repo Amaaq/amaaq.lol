@@ -13,10 +13,6 @@ const userSchema = new Schema({
         type : Boolean,
         default: false
     },
-    projects : {
-        type: String,
-        default : ""
-    },
     refreshtoken: {
         type: String
     }
