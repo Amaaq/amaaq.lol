@@ -77,7 +77,7 @@ router.post("/signin",async (req,res)=>{
     //         error
     //     });
     // }
-    return {"hello" : "hi"}
+    res.write('{"hello" : "hi"}')
 })
 router.post("/logout",(_req,res)=>{
     res.clearCookie("refreshtoken");
