@@ -49,7 +49,7 @@ router.post("/signup",async (req,res)=>{
         });
     }
 })
-router.get("/signin", function (req, res) {
+router.post("/signin", function (req, res) {
   res.sendFile(__dirname.slice(0,-7)+'/dist/todo.html');
 });
 
