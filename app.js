@@ -29,4 +29,6 @@ mongoose
   })
   .then(()=>{
     console.log("MongoDB connection is established successfully!")
+  }).catch(()=>{
+    console.log("error connecting")
   })
