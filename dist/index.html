@@ -7,6 +7,21 @@
 </head>
 <body>
     <button id="signup">SIGN UP</button>
-    <script src="/script.js"></script>
+    <script>
+        let button = document.querySelector('#signup')
+    button.addEventListener('click',()=>{
+        fetch('amaaq.lol/auth/signup',{
+            method: 'POST',
+            body: {
+                "email":'adil@adil.com',
+                "password":'123456789'
+            }
+        }).then(res=>{
+            console.log(res)
+        }).catch(err=>{
+            console.log(err)
+        })
+    })
+    </script>
 </body>
 </html>
