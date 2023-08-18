@@ -2,9 +2,9 @@ var express = require("express");
 const User = require("../models/user");
 var router = express.Router();
 /* GET home page. */
-router.get("/", function (req, res) {
-  res.sendFile(__dirname.slice(0,-7)+'/dist/index.html');
-});
+// router.get("/", function (req, res) {
+//   res.sendFile(__dirname.slice(0,-7)+'/dist/index.html');
+// });
 // router.get("/todoapp",async function(req,res){
 //   const {refreshtoken} = req.cookies;
 //   const user = await User.findOne({refreshtoken})
