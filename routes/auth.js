@@ -50,7 +50,9 @@ router.post("/signup",async (req,res)=>{
     }
 })
 router.post("/signin", function (req, res) {
-  res.sendFile(__dirname.slice(0,-7)+'/dist/todo.html');
+  res.json({
+    name :"adil"
+  })
 });
 
 router.post("/logout",(_req,res)=>{
