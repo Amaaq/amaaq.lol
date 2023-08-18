@@ -12,10 +12,10 @@
     button.addEventListener('click',()=>{
         fetch('/auth/signup',{
             method: 'POST',
-            body: {
+            body: JSON.stringify({
                 "email":'adil@adil.com',
                 "password":'123456789'
-            }
+            })
         }).then(res=>{
             console.log(res)
         }).catch(err=>{
