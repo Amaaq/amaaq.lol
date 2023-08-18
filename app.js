@@ -14,7 +14,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-app.use("/", indexRouter);
+// app.use("/", indexRouter);
 app.use("/auth", authRouter);
 
 app.listen(3000,function () {
