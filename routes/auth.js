@@ -50,9 +50,8 @@ router.post("/signup",async (req,res)=>{
     }
 })
 router.post("/signin", function (req, res) {
-  res.json({
-    name :"adil"
-  })
+    res.setHeader('Content-Type', 'application/json');
+    res.end(JSON.stringify({ a: 1 }));
 });
 
 router.post("/logout",(_req,res)=>{
