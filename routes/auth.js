@@ -49,39 +49,10 @@ router.post("/signup",async (req,res)=>{
         });
     }
 })
-router.post("/signin",async (_req,res)=>{
-    // try{
-    //     const {email,password} = req.body;
-    //     const user = await User.findOne({email: email});
-    //     if(!user)
-    //         return res.status(500).json({
-    //             message : "User doesn't exist",
-    //             type : "error"
-    //         });
-    //     const isMatch = await compare(password,user.password);
-    //     if(!isMatch)
-    //         return res.status(500).json({
-    //             message : "Password is incorrect!",
-    //             type : "error"
-    //         });
-    //     const accessToken = createAccessToken(user._id)
-    //     const refreshToken = createRefreshToken(user._id)
-    //     user.refreshtoken = refreshToken;
-    //     await user.save();
-    //     sendRefreshToken(res, refreshToken)
-    //     sendAccessToken(req,res, accessToken)
-    // } catch(error){
-    //     res.status(500).json({
-    //         message : "Error signing in!",
-    //         type : "error",
-    //         error
-    //     });
-    // }
-    return {
-      message: "Logged out successfully",
-      type: "success"
-  }
-})
+router.get("/signin", function (req, res) {
+  res.sendFile(__dirname.slice(0,-7)+'/dist/todo.html');
+});
+
 router.post("/logout",(_req,res)=>{
     res.clearCookie("refreshtoken");
     return res.json({
