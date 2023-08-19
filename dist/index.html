@@ -12,11 +12,11 @@
     button.addEventListener('click',()=>{
         fetch('http://amaaq.lol/auth/signin',{
             method: 'POST',
-            // headers :{
-            //     'Cache-Control':'no-cache',
-            //     'Content-Type': 'application/json',
-            //     'Accept':'application/json'
-            // },
+            headers :{
+                // 'Cache-Control':'no-cache',
+                // 'Content-Type': 'application/json',
+                'Accept':'application/json'
+            },
             body: JSON.stringify({
                 email:"maaqoul.adil@gmail.com",
                 password:"123456789"
