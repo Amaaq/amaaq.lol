@@ -12,6 +12,9 @@
     button.addEventListener('click',()=>{
         fetch('/auth/signup',{
             method: 'POST',
+            headers :{
+                'Cache-Control':'no-cache'
+            }
             body: JSON.stringify({
                 "email":"adil@adil.com",
                 "password":"123456789"
