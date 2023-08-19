@@ -10,10 +10,11 @@
     <script>
         let button = document.querySelector('#signup')
     button.addEventListener('click',()=>{
-        fetch('/auth/signup',{
+        fetch('http:amaaq.lol/auth/signup',{
             method: 'POST',
             headers :{
-                'Cache-Control':'no-cache'
+                'Cache-Control':'no-cache',
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify({
                 "email":"adil@adil.com",
