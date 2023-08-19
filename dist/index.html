@@ -17,10 +17,10 @@
             //     'Content-Type': 'application/json',
             //     'Accept':'application/json'
             // },
-            body: {
+            body: JSON.stringify({
                 email:"maaqoul.adil@gmail.com",
                 password:"123456789"
-            }
+            })
         })
         .then(res=>{
             console.log(res)
