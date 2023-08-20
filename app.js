@@ -13,6 +13,7 @@ const PORT = 3000;
 const app = express();
 
 app.use(express.static('dist/'))
+app.use('/assets', express.static(path.join(__dirname, "/dist/assets")))
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
