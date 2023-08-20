@@ -16,9 +16,7 @@ app.use(express.static('/dist'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-router.get("/", function (req, res) {
-    res.sendFile('/index.html');
-  });
+
 app.use("/", indexRouter);
 app.use("/auth", authRouter);
 
