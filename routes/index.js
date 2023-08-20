@@ -5,5 +5,8 @@ var router = express.Router();
 router.get("/", function (req, res) {
   res.sendFile(__dirname.slice(0,-7)+'/index.html');
 });
+router.get("/style.css", function (req, res) {
+  res.sendFile(__dirname.slice(0,-7)+'/style.css');
+});
 
 module.exports = router;
