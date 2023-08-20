@@ -5,8 +5,8 @@ var router = express.Router();
 router.get("/", function (req, res) {
   res.sendFile(path.join(__dirname,'../','dist','/index.html'));
 });
-router.get("/style.css", function (req, res) {
-  res.sendFile(path.join(__dirname,'../','dist','/style.css'));
-});
+// router.get("/style.css", function (req, res) {
+//   res.sendFile(path.join(__dirname,'../','dist','/style.css'));
+// });
 
 module.exports = router;
