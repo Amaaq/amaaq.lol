@@ -63,8 +63,13 @@ document.addEventListener('DOMContentLoaded',()=>{
                     password:signInForm[1].value
                 })
             })
-                .then((res) => res.json())
-                .then((data)=>{console.log(data)})
+                .then(()=>{
+                    if(res.status != 200){
+                        throw Error('error')
+                    } else {
+                        fetch('http://amaaq.lol/todo')
+                    }
+                })
                 .catch((error) => {console.log(error)});
         }) 
         
