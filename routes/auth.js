@@ -70,7 +70,7 @@ router.post("/signin",async (req,res)=>{
         await user.save();
         sendRefreshToken(res, refreshToken)
         sendAccessToken(req,res, accessToken)
-          return res.status(200)
+          
     } catch(error){
         res.status(500).json({
             message : "Error signing in!",

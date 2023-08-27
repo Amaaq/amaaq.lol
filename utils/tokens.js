@@ -13,6 +13,11 @@ const sendAccessToken = (_req,res,accesstoken)=>{
     res.cookie("accesstoken",accesstoken,{
         httpOnly:true
     })
+    res.json({
+        accesstoken,
+        message:"Sign in successful",
+        type: "success",
+    })
 }
 const sendRefreshToken = (res,refreshtoken)=>{
     res.cookie("refreshtoken",refreshtoken,{
