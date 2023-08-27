@@ -222,9 +222,9 @@ i {
     align-items: center;
     z-index: 4;
     background-color: rgba(200, 200, 200, 0.7);
-    border-radius: 2rem;
 }
 #todo-section form {
+    border-radius: 2rem;
     display: flex;
     flex-direction: column;
     align-items: stretch;
