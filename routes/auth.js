@@ -149,9 +149,7 @@ router.get("/protected",protected,async (req, res) => {
       return res.json({
         message: "You are logged in! 🤗",
         type: "success",
-        project: req.user.projects,
-        fname: req.user.fname,
-        lname: req.user.lname,
+        user: req.user,
       });
     return res.status(500).json({
       message: "You are not logged in! 😢",
