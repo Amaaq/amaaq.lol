@@ -144,10 +144,9 @@ router.post("/refresh_token", async(req,res)=>{
     }
 })
 
-router.get("/protected",protected,async (req, res) => {
+router.post("/protected",protected,async (req, res) => {
   try {
     if (req.user){
-      res.sendFile(__dirname.slice(0,-7)+'/dist/todo.html');
       return res.json({
         message: "You are logged in! 🤗",
         type: "success",
