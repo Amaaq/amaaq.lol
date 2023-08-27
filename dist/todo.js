@@ -25,7 +25,7 @@ fetch('http://amaaq.lol/auth/protected',{
         'Accept':'application/json'
     }
 }).then((res)=>res.json()).then((data)=>{
-    console.log(data)
+    console.log(data.user.projects)
 })
 document.addEventListener('DOMContentLoaded',()=>{
     if(projectsList != null){
