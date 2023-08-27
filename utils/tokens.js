@@ -10,10 +10,8 @@ const createRefreshToken = (id)=>{
     })
 }
 const sendAccessToken = (_req,res,accesstoken)=>{
-    res.json({
-        accesstoken,
-        message:"Sign in successful",
-        type: "success",
+    res.cookie("accesstoken",accesstoken,{
+        httpOnly:true
     })
 }
 const sendRefreshToken = (res,refreshtoken)=>{
