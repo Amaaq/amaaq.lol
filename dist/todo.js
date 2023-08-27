@@ -17,7 +17,14 @@ let dropTargets = document.querySelectorAll(".drop-target")
 
 
 
-fetch('http://amaaq.lol/auth/protected').then((res)=>res.json()).then((data)=>{
+fetch('http://amaaq.lol/auth/protected',{
+    method: 'POST',
+    headers :{
+        'Cache-Control':'no-cache',
+        'Content-Type': 'application/json',
+        'Accept':'application/json'
+    }
+}).then((res)=>res.json()).then((data)=>{
     console.log(data)
 })
 document.addEventListener('DOMContentLoaded',()=>{
