@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded',()=>{
                 })
             })
                 .then((res)=>{
-                    if(res.status == 200){console.log("200")}
+                    if(res.status == 200){window.open('http://amaaq.lol/todo',"_self")}
                 })
                 .catch((error) => {console.log(error)});
         }) 
