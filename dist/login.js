@@ -35,6 +35,7 @@ document.addEventListener('DOMContentLoaded',()=>{
                 })
             })
                 .then(res => {
+                    
                     signUpSuccess.style.display = 'block'
                     signUpForm.style.display = 'none'
                     return res.json()
@@ -51,22 +52,22 @@ document.addEventListener('DOMContentLoaded',()=>{
         signInSubmit.addEventListener('click',(e)=>{
             e.preventDefault()
             fetch('http://amaaq.lol/auth/signin',{
-            method: 'POST',
-            headers :{
-                'Cache-Control':'no-cache',
-                'Content-Type': 'application/json',
-                'Accept':'application/json'
-            },
-            body: JSON.stringify({
-                email:signInForm[0].value,
-                password:signInForm[1].value
+                method: 'POST',
+                headers :{
+                    'Cache-Control':'no-cache',
+                    'Content-Type': 'application/json',
+                    'Accept':'application/json'
+                },
+                body: JSON.stringify({
+                    email:signInForm[0].value,
+                    password:signInForm[1].value
+                })
             })
-        })
                 .then((res) => res.json())
                 .then((data)=>{console.log(data)})
                 .catch((error) => {console.log(error)});
-            
         }) 
+        
         signUpCancel.addEventListener('click',(e)=>{
             e.preventDefault()
             signUpForm.style.display = 'none'

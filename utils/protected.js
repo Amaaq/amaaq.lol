@@ -10,9 +10,10 @@ const protected = async (req,res,next)=>{
     const token = authorization.split(" ")[1]
     let id;
     try {
-        id = verify(token,process.env.ACCESS_TOKEN_SECRET).id
+        id = verify(authorization,process.env.ACCESS_TOKEN_SECRET).id
     } catch{
         return res.status(500).json({
+            auth : authorization,
             message: "Invalid token!!",
             type: "error"
         })
