@@ -7,7 +7,6 @@ const protected = async (req,res,next)=>{
             message: "No token!!",
             type: "error"
         })
-    const token = authorization.split(" ")[1]
     let id;
     try {
         id = verify(authorization,process.env.ACCESS_TOKEN_SECRET).id
