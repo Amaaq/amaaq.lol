@@ -1,7 +1,7 @@
 const {verify} = require("jsonwebtoken");
 const User = require("../models/user");
 const protected = async (req,res,next)=>{
-    const authorization = req.cookies('accestoken')
+    const authorization = req.cookies
     if(!authorization) 
         return res.status(500).json({
             message: "No token!!",
