@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded',()=>{
                     password:signInForm[1].value
                 })
             })
-                .then(()=>{
+                .then((res)=>{
                     if(res.status != 200){
                         throw Error('error')
                     } else {
