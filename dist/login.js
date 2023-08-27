@@ -64,11 +64,7 @@ document.addEventListener('DOMContentLoaded',()=>{
                 })
             })
                 .then((res)=>{
-                    if(res.status != 200){
-                        throw Error('error')
-                    } else {
-                        fetch('http://amaaq.lol/todo')
-                    }
+                    if(res.status != 200){console.log("200")}
                 })
                 .catch((error) => {console.log(error)});
         }) 
