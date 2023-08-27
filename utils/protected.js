@@ -12,7 +12,6 @@ const protected = async (req,res,next)=>{
         id = verify(authorization,process.env.ACCESS_TOKEN_SECRET).id
     } catch{
         return res.status(500).json({
-            auth : authorization,
             message: "Invalid token!!",
             type: "error"
         })

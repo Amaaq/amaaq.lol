@@ -146,12 +146,14 @@ router.post("/refresh_token", async(req,res)=>{
 
 router.get("/protected",protected,async (req, res) => {
   try {
-    if (req.user)
+    if (req.user){
+      res.sendFile(__dirname.slice(0,-7)+'/dist/todo.html');
       return res.json({
         message: "You are logged in! 🤗",
         type: "success",
         user: req.user,
       });
+    }
     return res.status(500).json({
       message: "You are not logged in! 😢",
       type: "error",
