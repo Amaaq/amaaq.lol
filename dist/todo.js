@@ -17,7 +17,9 @@ let dropTargets = document.querySelectorAll(".drop-target")
 
 
 
-
+fetch('http://amaaq.lol/protected').then((res)=>res.json()).then((data)=>{
+    console.log(data)
+})
 document.addEventListener('DOMContentLoaded',()=>{
     if(projectsList != null){
         showTodos(projects.find(element=>element.name == "separate").id)
