@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded',()=>{
                 })
             })
                 .then((res)=>{
-                    if(res.status != 200){console.log("200")}
+                    if(res.status == 200){console.log("200")}
                 })
                 .catch((error) => {console.log(error)});
         }) 
