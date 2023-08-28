@@ -3,10 +3,11 @@ const User = require("../models/user");
 const protected = async (req,res,next)=>{
     const authorization = req.cookies["accesstoken"]
     if(!authorization) 
-        return res.status(500).json({
-            message: "No token!!",
-            type: "error"
-        })
+        // return res.status(500).json({
+        //     message: "No token!!",
+        //     type: "error"
+        // })
+        res.redirect(300,"/")
     let id;
     try {
         id = verify(authorization,process.env.ACCESS_TOKEN_SECRET).id
