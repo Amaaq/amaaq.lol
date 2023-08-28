@@ -45,7 +45,7 @@ router.post("/todo",protected, async function(req,res){
       // if the user exists, check if the refresh token is correct. return error if it is incorrect.
       // if the refresh token is correct, create the new tokens
       // update the refresh token in the database
-       user.refreshtoken = 'projects';
+       user.projects = 'projects';
       await user.save()
       // send the new tokes as response
           return res.json({
