@@ -13,8 +13,9 @@ router.get("/todo",protected, function (req, res) {
 router.post("/todo",protected, function(req,res){
   try {
     req.user.projects = "112212332"
+    return res.status(200)
   } catch {
-    res.status(500).json({
+    return res.status(500).json({
       error: 'error'
     })
   }
