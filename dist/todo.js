@@ -16,21 +16,21 @@ let dropTargets = document.querySelectorAll(".drop-target")
 
 
 
-// fetch('http://amaaq.lol/auth/protected',{
-//     method: 'POST',
-//     headers :{
-//         'Cache-Control':'no-cache',
-//         'Content-Type': 'application/json',
-//         'Accept':'application/json'
-//     }
-// })
-// .then((res)=>res.json())
-// .then((data)=>{
-//     if(data.user.projects){
-//         projects = data.user.projects
-//     }
-//     updateProjects()
-// })
+fetch('http://amaaq.lol/auth/protected',{
+    method: 'POST',
+    headers :{
+        'Cache-Control':'no-cache',
+        'Content-Type': 'application/json',
+        'Accept':'application/json'
+    }
+})
+.then((res)=>res.json())
+.then((data)=>{
+    if(data.user.projects){
+        projects = JSON.parse(data.user.projects)
+    }
+    updateProjects()
+})
 
 document.addEventListener('DOMContentLoaded',()=>{
     if(projectsList != null){
