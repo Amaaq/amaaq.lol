@@ -3,7 +3,7 @@ var router = express.Router();
 const User = require('../models/user');
 var path = require('path')
 const { protected } = require("../utils/protected");
-const user = require("../models/user");
+const {verify} = require("jsonwebtoken")
 
 /* GET home page. */
 router.get("/", function (req, res) {
