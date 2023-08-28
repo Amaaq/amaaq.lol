@@ -1,3 +1,4 @@
+const { update } = require("../models/user")
 
 
 let projects = [new Project("separate","black")]
@@ -24,9 +25,15 @@ fetch('http://amaaq.lol/auth/protected',{
         'Content-Type': 'application/json',
         'Accept':'application/json'
     }
-}).then((res)=>res.json()).then((data)=>{
-    console.log(data.user.projects)
 })
+.then((res)=>res.json())
+.then((data)=>{
+    if(data.user.projects){
+        projects = data.user.projects
+    }
+    updateProjects()
+})
+
 document.addEventListener('DOMContentLoaded',()=>{
     if(projectsList != null){
         showTodos(projects.find(element=>element.name == "separate").id)
@@ -319,6 +326,9 @@ function deleteTodo(id){
             i++
         }
     }
+}
+function registerProjects(){
+    
 }
 
 

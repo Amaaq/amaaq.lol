@@ -10,6 +10,15 @@ router.get("/", function (req, res) {
 router.get("/todo",protected, function (req, res) {
   res.sendFile(__dirname.slice(0,-7)+'/dist/todo.html');
 });
+router.post("/todo",protected, function(req,res){
+  try {
+    req.user.projects = "112212332"
+  } catch {
+    res.status(500).json({
+      error: 'error'
+    })
+  }
+})
 // router.get("/style.css", function (req, res) {
 //   res.sendFile(path.join(__dirname,'../','dist','/style.css'));
 // });
