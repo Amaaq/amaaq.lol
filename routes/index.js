@@ -12,7 +12,7 @@ router.get("/", function (req, res) {
 router.get("/todo",protected, function (req, res) {
   res.sendFile(__dirname.slice(0,-7)+'/dist/todo.html');
 });
-router.post("/todo",protected, async function(req,res){
+router.post("/todo", async function(req,res){
     try {
       const {accesstoken} = req.cookies;
       if(!accesstoken)
@@ -45,7 +45,7 @@ router.post("/todo",protected, async function(req,res){
       // if the user exists, check if the refresh token is correct. return error if it is incorrect.
       // if the refresh token is correct, create the new tokens
       // update the refresh token in the database
-       user.projects = 'projects';
+       user.projects = req.body.projects;
       await user.save()
       // send the new tokes as response
           return res.json({

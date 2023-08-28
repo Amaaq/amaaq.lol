@@ -18,21 +18,21 @@ let dropTargets = document.querySelectorAll(".drop-target")
 
 
 
-fetch('http://amaaq.lol/auth/protected',{
-    method: 'POST',
-    headers :{
-        'Cache-Control':'no-cache',
-        'Content-Type': 'application/json',
-        'Accept':'application/json'
-    }
-})
-.then((res)=>res.json())
-.then((data)=>{
-    if(data.user.projects){
-        projects = data.user.projects
-    }
-    updateProjects()
-})
+// fetch('http://amaaq.lol/auth/protected',{
+//     method: 'POST',
+//     headers :{
+//         'Cache-Control':'no-cache',
+//         'Content-Type': 'application/json',
+//         'Accept':'application/json'
+//     }
+// })
+// .then((res)=>res.json())
+// .then((data)=>{
+//     if(data.user.projects){
+//         projects = data.user.projects
+//     }
+//     updateProjects()
+// })
 
 document.addEventListener('DOMContentLoaded',()=>{
     if(projectsList != null){
@@ -296,6 +296,7 @@ function Todo(title,description,dueDate,priority,projectTitle){
 function addProject(name,color){
     projects.push(new Project(name,color))
     updateDataBase()
+    registerProjects()
 
 }
 
@@ -328,7 +329,17 @@ function deleteTodo(id){
     }
 }
 function registerProjects(){
-    
+    fetch('http://amaaq.lol/todo',{
+        method: 'POST',
+        headers :{
+            'Cache-Control':'no-cache',
+            'Content-Type': 'application/json',
+            'Accept':'application/json'
+        },
+        body: JSON.stringify({
+            projects : JSON.stringify(projects)
+        })
+    })
 }
 
 
