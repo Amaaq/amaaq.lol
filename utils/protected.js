@@ -2,12 +2,9 @@ const {verify} = require("jsonwebtoken");
 const User = require("../models/user");
 const protected = async (req,res,next)=>{
     const authorization = req.cookies["accesstoken"]
-    if(!authorization) 
-        // return res.status(500).json({
-        //     message: "No token!!",
-        //     type: "error"
-        // })
-        res.redirect(300,"../")
+    if(!authorization) {
+        res.sendFile(__dirname.slice(0,-7)+'/dist/index.html')
+    }
     let id;
     try {
         id = verify(authorization,process.env.ACCESS_TOKEN_SECRET).id
