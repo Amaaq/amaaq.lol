@@ -3,7 +3,7 @@ const User = require("../models/user");
 const protected = async (req,res,next)=>{
     const authorization = req.cookies["accesstoken"]
     if(!authorization) {
-        res.sendFile(__dirname.slice(0,-7)+'/dist/index.html')
+        return res.sendFile(__dirname.slice(0,-7)+'/dist/index.html')
     }
     let id;
     try {
