@@ -1,5 +1,3 @@
-const { update } = require("../models/user")
-
 
 let projects = [new Project("separate","black")]
 
