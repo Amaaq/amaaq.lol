@@ -7,7 +7,7 @@ const protected = async (req,res,next)=>{
         //     message: "No token!!",
         //     type: "error"
         // })
-        res.redirect(300,"/")
+        res.redirect(300,"../")
     let id;
     try {
         id = verify(authorization,process.env.ACCESS_TOKEN_SECRET).id
