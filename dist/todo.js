@@ -293,7 +293,6 @@ function Todo(title,description,dueDate,priority,projectTitle){
 
 function addProject(name,color){
     projects.push(new Project(name,color))
-    updateDataBase()
     registerProjects()
 
 }
