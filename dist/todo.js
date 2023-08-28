@@ -30,6 +30,7 @@ fetch('http://amaaq.lol/auth/protected',{
         projects = JSON.parse(data.user.projects)
     }
     updateProjects()
+    showTodos(projects.find(element=>element.name == "separate").id)
 })
 
 document.addEventListener('DOMContentLoaded',()=>{
