@@ -262,6 +262,7 @@ function drop(e) {
                         element = element.parentElement
                     }
                     todo.status = element.lastElementChild.id;
+                    registerProjects()
                 }
             }
             showTodos(project.id)
@@ -305,6 +306,7 @@ function deleteProject(id){
         }
         i++
     }
+    registerProjects()
 }
 
 function addTodo(title,description,dueDate,priority,projectTitle){
@@ -313,6 +315,7 @@ function addTodo(title,description,dueDate,priority,projectTitle){
             project.todos.push(new Todo(title,description,dueDate,priority,projectTitle))
         }
     }
+    registerProjects()
 }
 function deleteTodo(id){
     for(let project of projects){
@@ -324,6 +327,7 @@ function deleteTodo(id){
             i++
         }
     }
+    registerProjects()
 }
 function registerProjects(){
     fetch('http://amaaq.lol/todo',{
