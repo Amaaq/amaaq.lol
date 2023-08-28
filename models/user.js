@@ -15,6 +15,9 @@ const userSchema = new Schema({
     },
     refreshtoken: {
         type: String
+    },
+    projects: {
+        type: String
     }
 })
 module.exports = model("User", userSchema)
