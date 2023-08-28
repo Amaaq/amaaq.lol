@@ -3,7 +3,7 @@ const User = require("../models/user");
 const protected = async (req,res,next)=>{
     const authorization = req.cookies["accesstoken"]
     if(!authorization) {
-        return res.redirect(300,"/")
+        return res.redirect(300,__dirname+"/")
     }
     let id;
     try {
