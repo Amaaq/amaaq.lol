@@ -95,7 +95,7 @@ document.addEventListener('DOMContentLoaded',()=>{
                     updateProjects()
                     showTodos()
                 }else {
-                    user.projects.find(todoForm[4].id).addTodo(todoForm[0].value,todoForm[3].value,todoForm[1].value,todoForm[2].value)
+                    user.projects(element=> element.projectId == todoForm[4].id).addTodo(todoForm[0].value,todoForm[3].value,todoForm[1].value,todoForm[2].value)
                     updateProjects()
                     showTodos()
                 }
