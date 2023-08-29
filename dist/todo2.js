@@ -330,7 +330,7 @@ function registerProjects(){
             'Accept':'application/json'
         },
         body: JSON.stringify({
-            projects : JSON.stringify(projects)
+            projects : JSON.stringify(user.projects)
         })
     })
 }
