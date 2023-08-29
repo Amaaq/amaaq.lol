@@ -35,7 +35,7 @@ fetch('http://amaaq.lol/auth/protected',{
 
 document.addEventListener('DOMContentLoaded',()=>{
     if(projectsList != null){
-        showTodos(projects.find(element=>element.name == "separate").id)
+        showTodos()
         hideTodoForm()
         hideProjectForm()
         addTodoDiv.addEventListener("click",(e)=>{
