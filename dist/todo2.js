@@ -32,6 +32,7 @@ fetch('http://amaaq.lol/auth/protected',{
     }else {
         user.projects = [new Project('separate','black')]
     }
+    user.initialize()
     user.select()
     updateProjects()
     showTodos()
@@ -287,6 +288,14 @@ function User(){
 User.prototype.addProject =  function (name,color){
     this.projects.push(new Project(name,color))
     registerProjects()
+}
+User.prototype.initialize = function(){
+    this.projects.forEach(element=>{
+        element.prototype = Project.prototype
+        element.todos.forEach(todo=>{
+            todo.prototype = Todo.prototype
+        })
+    })
 }
 
 User.prototype.deleteProject = function (projectId){
