@@ -335,7 +335,7 @@ function registerProjects(){
         body: JSON.stringify({
             projects : JSON.stringify(user.projects)
         })
-    })
+    }).then(res=>res.json()).then(data=>{console.log(data)})
 }
 
 
