@@ -291,9 +291,9 @@ User.prototype.addProject =  function (name,color){
 }
 User.prototype.initialize = function(){
     this.projects.forEach(element=>{
-        Object.setPrototypeOf(element,Project)
+        Object.setPrototypeOf(element,Project.prototype)
         element.todos.forEach(todo=>{
-            Object.setPrototypeOf(todo,Todo)
+            Object.setPrototypeOf(todo,Todo.prototype)
         })
     })
 }
@@ -309,7 +309,7 @@ function Project(name,color){
     this.color = color;
     this.todos = []
 }
-Project.prototype.addTodo =  function (title,description,dueDate,priority){
+Project.prototype.addTodo = function (title,description,dueDate,priority){
     this.todos.push(new Todo(title,description,dueDate,priority))
     registerProjects()
 }
