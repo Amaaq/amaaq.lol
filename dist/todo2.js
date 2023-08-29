@@ -32,6 +32,7 @@ fetch('http://amaaq.lol/auth/protected',{
     }else {
         user.projects = [new Project('separate','black')]
     }
+    user.select()
     updateProjects()
     showTodos()
     updateOptions()
@@ -273,8 +274,8 @@ function drop(e) {
 
 
 function User(){
-    this.projects = [new Project("separate","black")],
-    this.selected = this.projects[0],
+    this.projects = []
+    this.selected = undefined
     this.select = function(id){
         if(id){
             this.selected = this.projects.find(element=> element.projectId == id)
