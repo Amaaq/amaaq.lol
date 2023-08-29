@@ -1,6 +1,6 @@
 
 let user = new User()
-user.projects = [new Project('separate','black')]
+
 
 
 let todoStatus = document.querySelector('#to-do')
@@ -29,6 +29,8 @@ fetch('http://amaaq.lol/auth/protected',{
 .then((data)=>{
     if(data.user.projects){
         user.projects = JSON.parse(data.user.projects)
+    }else {
+        user.projects = [new Project('separate','black')]
     }
     updateProjects()
     showTodos()
@@ -37,7 +39,6 @@ fetch('http://amaaq.lol/auth/protected',{
 
 document.addEventListener('DOMContentLoaded',()=>{
     if(projectsList != null){
-        showTodos()
         hideTodoForm()
         hideProjectForm()
         addTodoDiv.addEventListener("click",(e)=>{
