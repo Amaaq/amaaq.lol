@@ -190,7 +190,7 @@ function showTodos(){
     
             del.setAttribute("class","fa-solid fa-trash-can")
             del.addEventListener("click",()=>{
-                selected.deleteTodo(todo.todoId)
+                user.selected.deleteTodo(todo.todoId)
                 showTodos()
             })
     
