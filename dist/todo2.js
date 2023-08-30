@@ -180,6 +180,7 @@ function showTodos(){
     inProgress.textContent = ""
     done.textContent = ""
     h2.textContent = user.selected.name
+    if(!user.selected.todos) return
     user.selected.todos.forEach(todo=>{
         
             let li = createTodoListElement(todo.todoId)
