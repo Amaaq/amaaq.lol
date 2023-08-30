@@ -26,7 +26,7 @@ fetch('http://amaaq.lol/auth/protected',{
 })
 .then((res)=>res.json())
 .then((data)=>{
-    let user = new User(data.user.fname,data.user.lname)
+    user = new User(data.user.fname,data.user.lname)
     if(data.user.projects){
         user.projects = JSON.parse(data.user.projects)
     }else {
