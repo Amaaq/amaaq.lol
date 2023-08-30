@@ -35,7 +35,7 @@ fetch('http://amaaq.lol/auth/protected',{
     }else {
         user.projects = [new Project('separate','black')]
     }
-    greeting.textContent = `Hello Mr ${user.fname} ${user.lname}`
+    greeting.textContent = `Hello Mr ${user.fname} ${user.lname.toUpperCase()}`
     user.initialize()
     user.select()
     updateProjects()
@@ -289,7 +289,7 @@ function drop(e) {
 
 
 
-function User(lname,fname){
+function User(fname,lname){
     this.fname = fname
     this.lname = lname
     this.projects = []
