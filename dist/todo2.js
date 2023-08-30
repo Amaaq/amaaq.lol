@@ -29,8 +29,6 @@ fetch('http://amaaq.lol/auth/protected',{
     user = new User(data.user.fname,data.user.lname)
     if(data.user.projects){
         user.projects = JSON.parse(data.user.projects)
-    }else {
-        user.projects = [new Project('separate','black')]
     }
     greeting.textContent = `Mr. ${user.fname} ${user.lname.toUpperCase()}`
     user.initialize()
@@ -286,14 +284,14 @@ function drop(e) {
 function User(fname,lname){
     this.fname = fname
     this.lname = lname
-    this.projects = []
-    this.selected = [new Project('separate','black')]
+    this.projects = [new Project('separate','black')]
+    this.selected = this.projects[0]
 }
 User.prototype.select = function(id){
     if(id){
         this.selected = this.projects.find(element=> element.projectId == id)
     }else {
-        this.selected = []
+        this.selected = this.projects[0]
     }
 }
 User.prototype.addProject =  function (name,color){
