@@ -25,7 +25,8 @@ const userSchema = new Schema({
         type: String
     },
     projects: {
-        type: String
+        type: String,
+        default: ""
     }
 })
 module.exports = model("User", userSchema)
