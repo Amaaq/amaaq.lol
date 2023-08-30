@@ -35,14 +35,16 @@ document.addEventListener('DOMContentLoaded',()=>{
                 })
             })
                 .then(res => {
-                    
-                    signUpSuccess.style.display = 'block'
-                    signUpForm.style.display = 'none'
-                    return res.json()
+                    if(res.status==200){
+                        signUpSuccess.style.display = 'block'
+                        signUpForm.style.display = 'none'
+                    }else {
+                        return res.json()
+                    }
                 })
+                .then(data=>{signUpError.textContent= data.message})
                 .catch((error) => {
-                    console.log(error)
-                    signUpError.textContent =  error.code
+                    signUpError.textContent =  error
                 })
         })
         
