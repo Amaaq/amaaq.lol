@@ -35,7 +35,7 @@ fetch('http://amaaq.lol/auth/protected',{
     }else {
         user.projects = [new Project('separate','black')]
     }
-    greeting.textContent = `Hello Mr ${user.fname} ${user.lname.toUpperCase()}`
+    greeting.textContent = `Mr. ${user.fname} ${user.lname.toUpperCase()}`
     user.initialize()
     user.select()
     updateProjects()
