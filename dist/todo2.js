@@ -1,7 +1,5 @@
 
 let user = new User("","")
-
-
 let todoStatus = document.querySelector('#to-do')
 let inProgress = document.querySelector('#in-progress')
 let done = document.querySelector('#done')
@@ -42,8 +40,8 @@ fetch('http://amaaq.lol/auth/protected',{
     updateOptions()
 })
 
-document.addEventListener('DOMContentLoaded',()=>{
-    if(projectsList != null){
+updateProjects()
+showTodos()
         logout.addEventListener("click",()=>{
             fetch('http://amaaq.lol/auth/logout',{
                 method: 'POST',
@@ -118,8 +116,7 @@ document.addEventListener('DOMContentLoaded',()=>{
                 updateOptions()
             }
         })
-    }
-})
+
 
 
 
