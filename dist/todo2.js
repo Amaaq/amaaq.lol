@@ -176,7 +176,7 @@ function showTodos(){
     user.selected.todos.forEach(todo=>{
         
             let li = createTodoListElement(todo.todoId)
-            let arr = createTodoDescriptionDiv()
+            let arr = createTodoDescriptionDiv(todo.description)
             li.appendChild(createTodoDeleteButton(todo.todoId))
             li.appendChild(arr[1])
             li.appendChild(createTodoTitleElement(todo.title))
@@ -315,7 +315,7 @@ function Project(name,color){
     this.color = color;
     this.todos = []
 }
-Project.prototype.addTodo = function (title,description,dueDate,priority){
+Project.prototype.addTodo = function (title,description="NO DESCRIPTION AVAILABLE",dueDate="No due Date",priority){
     this.todos.push(new Todo(title,description,dueDate,priority))
     registerProjects()
 }
@@ -324,7 +324,7 @@ Project.prototype.deleteTodo  = function (id){
     this.todos.splice(this.todos.findIndex(element=>element.todoId==id),1)
     registerProjects()
 }
-function Todo(title,description="NO DESCRIPTION AVAILABLE",dueDate="No due Date",priority){
+function Todo(title,description,dueDate,priority){
     this.todoId = Date.now()
     this.title = title.toLowerCase();
     this.description = description;
