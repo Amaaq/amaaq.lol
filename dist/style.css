@@ -348,6 +348,9 @@ header #profile {
     font-weight: 700;
     letter-spacing: 2px;
 }
+#greeting {
+    margin-right: 2rem;
+}
 img {
     height: 50%;
     margin-right: 1rem;
