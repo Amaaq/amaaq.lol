@@ -1,6 +1,5 @@
 
 let user = new User("","")
-user.select()
 let todoStatus = document.querySelector('#to-do')
 let inProgress = document.querySelector('#in-progress')
 let done = document.querySelector('#done')
