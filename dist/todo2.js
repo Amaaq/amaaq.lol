@@ -1,5 +1,6 @@
 
 let user = new User("","")
+user.select()
 let todoStatus = document.querySelector('#to-do')
 let inProgress = document.querySelector('#in-progress')
 let done = document.querySelector('#done')
@@ -41,7 +42,6 @@ fetch('http://amaaq.lol/auth/protected',{
 })
 
 updateProjects()
-showTodos()
         logout.addEventListener("click",()=>{
             fetch('http://amaaq.lol/auth/logout',{
                 method: 'POST',
@@ -177,7 +177,6 @@ function showTodos(){
     inProgress.textContent = ""
     done.textContent = ""
     h2.textContent = user.selected.name
-    if(!user.selected.todos) return
     user.selected.todos.forEach(todo=>{
         
             let li = createTodoListElement(todo.todoId)
@@ -290,12 +289,12 @@ function User(fname,lname){
     this.lname = lname
     this.projects = []
     this.selected = [new Project('separate','black')]
-    this.select = function(id){
-        if(id){
-            this.selected = this.projects.find(element=> element.projectId == id)
-        }else {
-            this.selected = this.projects[0]
-        }
+}
+User.prototype.select = function(id){
+    if(id){
+        this.selected = this.projects.find(element=> element.projectId == id)
+    }else {
+        this.selected = []
     }
 }
 User.prototype.addProject =  function (name,color){
