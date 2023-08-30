@@ -40,9 +40,6 @@ document.addEventListener('DOMContentLoaded',()=>{
                     signUpForm.style.display = 'none'
                     return res.json()
                 })
-                .then((data)=>{
-                    console.log(data)
-                })
                 .catch((error) => {
                     console.log(error)
                     signUpError.textContent =  error.code
@@ -64,8 +61,13 @@ document.addEventListener('DOMContentLoaded',()=>{
                 })
             })
                 .then((res)=>{
-                    if(res.status == 200){window.open('http://amaaq.lol/todo',"_self")}
-                })
+                    if(res.status == 200){
+                        window.open('http://amaaq.lol/todo',"_self")
+                    }else {
+                        return res.json()
+                    }
+
+                }).then(data=> {signInError.textContent = data.message})
                 .catch((error) => {console.log(error)});
         }) 
         
