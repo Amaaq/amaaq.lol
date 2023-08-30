@@ -177,6 +177,7 @@ function updateProjects() {
 
 
 function showTodos(){
+    if(!user.selected) return
     todoStatus.textContent = ""
     inProgress.textContent = ""
     done.textContent = ""
