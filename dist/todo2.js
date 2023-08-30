@@ -99,7 +99,7 @@ document.addEventListener('DOMContentLoaded',()=>{
                     updateProjects()
                     showTodos()
                 }else {
-                    user.projects.find(element=> element.projectId == todoForm[4].selectedOptions[0].value).addTodo(todoForm[0].value,todoForm[3].value,todoForm[1].value,todoForm[2].value)
+                    user.projects.find(element=> element.projectId == todoForm[4].selectedOptions[0].value).addTodo(todoForm[0].value,todoForm[3].value || "NO DESCRIPTION AVAILABLE",todoForm[1].value || "no due date",todoForm[2].value)
                     updateProjects()
                     showTodos()
                 }
@@ -315,7 +315,7 @@ function Project(name,color){
     this.color = color;
     this.todos = []
 }
-Project.prototype.addTodo = function (title,description="NO DESCRIPTION AVAILABLE",dueDate="No due Date",priority){
+Project.prototype.addTodo = function (title,description,dueDate,priority){
     this.todos.push(new Todo(title,description,dueDate,priority))
     registerProjects()
 }
