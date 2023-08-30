@@ -30,8 +30,10 @@ document.addEventListener('DOMContentLoaded',()=>{
                     'Accept':'application/json'
                 },
                 body: JSON.stringify({
-                    email:signUpForm[0].value,
-                    password:signUpForm[1].value
+                    fname:signUpForm[0].value,
+                    lname:signUpForm[1].value,
+                    email:signUpForm[2].value,
+                    password:signUpForm[3].value
                 })
             })
                 .then(res => {

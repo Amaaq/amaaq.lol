@@ -24,7 +24,7 @@ router.get('/', async (req, res) => {
 
 router.post("/signup",async (req,res)=>{
     try{
-        const {email,password} = req.body;
+        const {email,password,fname,lname} = req.body;
         const user = await User.findOne({email: email});
         if(user)
             return res.status(500).json({
@@ -33,8 +33,10 @@ router.post("/signup",async (req,res)=>{
             });
         const passwordHash = await hash(password,10);
         const newUser = new User({
+            fname: fname,
+            lname: lname,
             email: email,
-            password: passwordHash
+            password: passwordHash,
         })
         await newUser.save();
         res.status(200).json({
