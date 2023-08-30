@@ -2,7 +2,6 @@
 let user = new User("","")
 
 
-
 let todoStatus = document.querySelector('#to-do')
 let inProgress = document.querySelector('#in-progress')
 let done = document.querySelector('#done')
@@ -177,11 +176,9 @@ function updateProjects() {
 
 
 function showTodos(){
-    if(!user.selected) return
     todoStatus.textContent = ""
     inProgress.textContent = ""
     done.textContent = ""
-    
     h2.textContent = user.selected.name
     user.selected.todos.forEach(todo=>{
         
@@ -294,7 +291,7 @@ function User(fname,lname){
     this.fname = fname
     this.lname = lname
     this.projects = []
-    this.selected = undefined
+    this.selected = [new Project('separate','black')]
     this.select = function(id){
         if(id){
             this.selected = this.projects.find(element=> element.projectId == id)
