@@ -175,7 +175,7 @@ function showTodos(){
     h2.textContent = user.selected.name
     user.selected.todos.forEach(todo=>{
         
-            let li = createTodoListElement(todo.id)
+            let li = createTodoListElement(todo.todoId)
             let arr = createTodoDescriptionDiv()
             li.appendChild(createTodoDeleteButton(todo.todoId))
             li.appendChild(arr[1])
