@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded',()=>{
         logout.addEventListener("click",()=>{
             fetch('http://amaaq.lol/auth/logout',{
                 method: 'POST',
-            }).then(location.reload())
+            }).then(window.open('http://amaaq.lol',"_self"))
         })
         hideTodoForm()
         hideProjectForm()
