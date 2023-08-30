@@ -82,6 +82,7 @@ router.post("/signin",async (req,res)=>{
 router.post("/logout",(_req,res)=>{
     res.clearCookie("refreshtoken");
     res.clearCookie("accesstoken");
+    res.end()
 })
 router.post("/refresh_token", async(req,res)=>{
     try {
