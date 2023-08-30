@@ -14,6 +14,7 @@ let addProjectDiv = document.querySelector(".add-project-div")
 let projectForm = document.querySelector('#form1')
 let todoForm = document.querySelector('#form2')
 let dropTargets = document.querySelectorAll(".drop-target")
+let logout = document.querySelector("#log-out")
 
 
 
@@ -41,6 +42,11 @@ fetch('http://amaaq.lol/auth/protected',{
 
 document.addEventListener('DOMContentLoaded',()=>{
     if(projectsList != null){
+        logout.addEventListener("click",()=>{
+            fetch('http://amaaq.lol/auth/logout',{
+                method: 'POST',
+            }).then(location.reload())
+        })
         hideTodoForm()
         hideProjectForm()
         addTodoDiv.addEventListener("click",(e)=>{
@@ -176,7 +182,7 @@ function showTodos(){
     user.selected.todos.forEach(todo=>{
         
             let li = createTodoListElement(todo.todoId)
-            let arr = createTodoDescriptionDiv(todo.description)
+            let arr = createTodoDescriptionAndShowButton(todo.description)
             li.appendChild(createTodoDeleteButton(todo.todoId))
             li.appendChild(arr[1])
             li.appendChild(createTodoTitleElement(todo.title))
@@ -226,27 +232,27 @@ function createTodoDeleteButton(id){
     })
     return del
 }
-function createTodoDescriptionDiv(description){
-    let information = document.createElement('div')
-    information.textContent = description
-    information.setAttribute("class","information")
-    let info = document.createElement('i')
-    info.setAttribute("class","fa-solid fa-circle-info")
-    info.addEventListener("click",function(){
+function createTodoDescriptionAndShowButton(todoDescription){
+    let description = document.createElement('div')
+    description.textContent = todoDescription
+    description.setAttribute("class","information")
+    let button = document.createElement('i')
+    button.setAttribute("class","fa-solid fa-circle-info")
+    button.addEventListener("click",function(){
         let informationDivs = document.querySelectorAll(".information");
-        if(information.classList.contains("displayed")){
-            information.classList.remove("displayed")
+        if(description.classList.contains("displayed")){
+            description.classList.remove("displayed")
         }else {
             informationDivs.forEach(infoDiv=>{
                 if(infoDiv.classList.contains("displayed")){
                     infoDiv.classList.remove("displayed")
                 }
             })
-            information.classList.add("displayed")
+            description.classList.add("displayed")
 
         }
     })
-    return [information,info]
+    return [description,button]
 }
 
 function updateOptions(){
