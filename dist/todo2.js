@@ -172,58 +172,16 @@ function showTodos(){
     inProgress.textContent = ""
     done.textContent = ""
     
-     h2.textContent = user.selected.name
-        user.selected.todos.forEach(todo=>{
-
-            let li = document.createElement("li")
-            let p = document.createElement("p")
-            let span = document.createElement("span")
-            let del = document.createElement('i')
-            let info = document.createElement('i')
-            let information = document.createElement('div')
-            
-            
-    
-            li.setAttribute("draggable","true")
-            li.addEventListener("dragstart",(e)=>{
-                e.dataTransfer.setData('text',todo.todoId)
-            })
-    
-            p.textContent = todo.title
-    
-            span.textContent = todo.dueDate
-    
-            del.setAttribute("class","fa-solid fa-trash-can")
-            del.addEventListener("click",()=>{
-                user.selected.deleteTodo(todo.todoId)
-                showTodos()
-            })
-    
-    
-            information.textContent = todo.description
-            information.setAttribute("class","information")
-            info.setAttribute("class","fa-solid fa-circle-info")
-            info.addEventListener("click",function(){
-                let informationDivs = document.querySelectorAll(".information");
-                if(information.classList.contains("displayed")){
-                    information.classList.remove("displayed")
-                }else {
-                    informationDivs.forEach(infoDiv=>{
-                        if(infoDiv.classList.contains("displayed")){
-                            infoDiv.classList.remove("displayed")
-                        }
-                    })
-                    information.classList.add("displayed")
-    
-                }
-            })
-    
-    
-            li.appendChild(del)
-            li.appendChild(info)
-            li.appendChild(p)
-            li.appendChild(span)
-            li.appendChild(information)
+    h2.textContent = user.selected.name
+    user.selected.todos.forEach(todo=>{
+        
+            let li = createTodoListElement(todo.id)
+            let arr = createTodoDescriptionDiv()
+            li.appendChild(createTodoDeleteButton(todo.todoId))
+            li.appendChild(arr[1])
+            li.appendChild(createTodoTitleElement(todo.title))
+            li.appendChild(createTodoDateElement(todo.dueDate))
+            li.appendChild(arr[0])
             switch (todo.status){
                 case "to-do" : {
                     todoStatus.appendChild(li);
@@ -241,7 +199,55 @@ function showTodos(){
         })
     }
 
+function createTodoListElement(id){
+    let li = document.createElement("li")
+    li.setAttribute("draggable","true")
+    li.addEventListener("dragstart",(e)=>{
+        e.dataTransfer.setData('text',id)
+    })
+    return li
+}
+function createTodoTitleElement(title){
+    let p = document.createElement("p")
+    p.textContent = title
+    return p
+}
+function createTodoDateElement(dueDate){
+    let span = document.createElement("span")
+    span.textContent = dueDate
+    return span
+}
+function createTodoDeleteButton(id){
+    let del = document.createElement('i')
+    del.setAttribute("class","fa-solid fa-trash-can")
+    del.addEventListener("click",()=>{
+        user.selected.deleteTodo(id)
+        showTodos()
+    })
+    return del
+}
+function createTodoDescriptionDiv(description){
+    let information = document.createElement('div')
+    information.textContent = description
+    information.setAttribute("class","information")
+    let info = document.createElement('i')
+    info.setAttribute("class","fa-solid fa-circle-info")
+    info.addEventListener("click",function(){
+        let informationDivs = document.querySelectorAll(".information");
+        if(information.classList.contains("displayed")){
+            information.classList.remove("displayed")
+        }else {
+            informationDivs.forEach(infoDiv=>{
+                if(infoDiv.classList.contains("displayed")){
+                    infoDiv.classList.remove("displayed")
+                }
+            })
+            information.classList.add("displayed")
 
+        }
+    })
+    return [information,info]
+}
 
 function updateOptions(){
     let str = ""
@@ -290,9 +296,9 @@ User.prototype.addProject =  function (name,color){
     registerProjects()
 }
 User.prototype.initialize = function(){
-    this.projects.forEach(element=>{
-        Object.setPrototypeOf(element,Project.prototype)
-        element.todos.forEach(todo=>{
+    this.projects.forEach(project=>{
+        Object.setPrototypeOf(project,Project.prototype)
+        project.todos.forEach(todo=>{
             Object.setPrototypeOf(todo,Todo.prototype)
         })
     })
