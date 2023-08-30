@@ -1,5 +1,5 @@
 
-let user = new User()
+let user = new User("","")
 
 
 
@@ -15,6 +15,7 @@ let projectForm = document.querySelector('#form1')
 let todoForm = document.querySelector('#form2')
 let dropTargets = document.querySelectorAll(".drop-target")
 let logout = document.querySelector("#log-out")
+let greeting = document.querySelector('#greeting')
 
 
 
@@ -28,11 +29,13 @@ fetch('http://amaaq.lol/auth/protected',{
 })
 .then((res)=>res.json())
 .then((data)=>{
+    let user = new User(data.user.fname,data.user.lname)
     if(data.user.projects){
         user.projects = JSON.parse(data.user.projects)
     }else {
         user.projects = [new Project('separate','black')]
     }
+    greeting.textContent = `Hello Mr ${user.fname} ${user.lname}`
     user.initialize()
     user.select()
     updateProjects()
@@ -101,7 +104,7 @@ document.addEventListener('DOMContentLoaded',()=>{
             }else {
                 if(todoForm[4].value == "new" && todoForm[5].value != ""){
                     user.addProject(todoForm[5].value,todoForm[6].value)
-                    user.projects[user.projects.length-1].addTodo(todoForm[0].value,todoForm[3].value,todoForm[1].value,todoForm[2].value)
+                    user.projects[user.projects.length-1].addTodo(todoForm[0].value,todoForm[3] || "NO DESCRIPTION AVAILABLE".value,todoForm[1].value || "no due date",todoForm[2].value)
                     updateProjects()
                     showTodos()
                 }else {
@@ -286,7 +289,9 @@ function drop(e) {
 
 
 
-function User(){
+function User(lname,fname){
+    this.fname = fname
+    this.lname = lname
     this.projects = []
     this.selected = undefined
     this.select = function(id){
