@@ -1,4 +1,4 @@
-/* :root {
+:root {
     --bgcolor: #f4f9f9;
     --hovercolor: #aaa;
     --btcolor: #a4ebf3;
@@ -6,8 +6,8 @@
     --txtcolor: #454545;
     --primarybg: #7ec9d1;
     --secondarybg: #95cff1;
-} */
-:root {
+}
+/* :root {
     --bgcolor: #FDE5EC;
     --hovercolor: #aaa;
     --btcolor: #E48586;
@@ -15,7 +15,7 @@
     --txtcolor: #3f3e4a;
     --primarybg: #E48586;
     --secondarybg: #e54c4e;
-}
+} */
 * {
     padding: 0;
     margin: 0;
