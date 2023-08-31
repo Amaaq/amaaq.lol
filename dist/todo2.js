@@ -82,7 +82,7 @@ projectForm[2].addEventListener("click",(e)=>{
     }else {
         projectForm.reset()
         user.addProject(projectForm[0].value,projectForm[1].value)
-        user.select(user.projects[user.project.length-1].projectId)
+        user.select(user.projects[user.projects.length-1].projectId)
         hideProjectForm()
         updateProjects()
         updateOptions()
