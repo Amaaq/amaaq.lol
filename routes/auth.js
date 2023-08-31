@@ -18,6 +18,8 @@ const {
   passwordResetTemplate,
   passwordResetConfirmationTemplate,
 } = require("../utils/email");
+
+
 router.get('/', async (req, res) => {
 	res.send('Hello Express!! 👋, this is Auth end point')
 })
