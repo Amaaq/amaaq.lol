@@ -80,8 +80,8 @@ projectForm[2].addEventListener("click",(e)=>{
     if(projectForm[0].value == ""){
         projectForm[0].style.borderColor = "red"
     }else {
-        projectForm.reset()
         user.addProject(projectForm[0].value,projectForm[1].value)
+        projectForm.reset()
         user.select(user.projects[user.projects.length-1].projectId)
         hideProjectForm()
         updateProjects()
