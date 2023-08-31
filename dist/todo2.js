@@ -143,33 +143,8 @@ function showProjectForm(){
 
 function updateProjects() {
     projectsList.textContent = ""
-    user.projects.forEach((element,index)=>{
-
-        let li = document.createElement('li')
-        let h4 = document.createElement('h4')
-        let span = document.createElement('span')
-        let icon = document.createElement('i')
-        h4.textContent = element.name 
-        li.addEventListener("click",()=>{
-            user.select(element.projectId)
-            showTodos()
-            updateOptions()
-        })
-        span.style.backgroundColor = element.color
-        icon.setAttribute("class","fa-solid fa-trash-can")
-        icon.addEventListener("click",(e)=>{
-            e.stopPropagation()
-            user.deleteProject(element.projectId)
-            user.select()
-            updateProjects()
-            showTodos()
-            updateOptions()
-        })
-        li.appendChild(span)
-        li.appendChild(h4)
-        li.id = element.projectId
-        if(index!=0){li.appendChild(icon)}
-        projectsList.appendChild(li)
+    user.projects.forEach((project,index)=>{ 
+        projectsList.appendChild(createProjectListElement(project,index))
     })
 }
 
@@ -196,7 +171,42 @@ function showTodos(){
         }
     })
 }
-
+function createProjectListElement(project,index){
+    let li = document.createElement('li')
+    li.addEventListener("click",()=>{
+        user.select(project.id)
+        showTodos()
+        updateOptions()
+    })
+    li.appendChild(createProjectColorElement(project.color))
+    li.appendChild(createProjectNameElement(project.name))
+    li.id = project.id
+    if(index!=0){li.appendChild(createProjectDeleteButton(project.id))}
+    return li
+}
+function createProjectNameElement(name){
+    let h4 = document.createElement('h4')
+    h4.textContent = name
+    return h4
+}
+function createProjectColorElement(color){
+    let span = document.createElement('span')
+    span.style.backgroundColor = color
+    return span
+}
+function createProjectDeleteButton(id){
+    let icon = document.createElement('i')
+    icon.setAttribute("class","fa-solid fa-trash-can")
+    icon.addEventListener("click",(e)=>{
+        e.stopPropagation()
+        user.deleteProject(id)
+        user.select()
+        updateProjects()
+        showTodos()
+        updateOptions()
+    })
+    return icon
+}
 function createTodoListElement(todo){
     let li = document.createElement("li")
     li.setAttribute("draggable","true")
@@ -357,7 +367,7 @@ function registerProjects(){
         body: JSON.stringify({
             projects : JSON.stringify(user.projects)
         })
-    }).then(res=>res.json()).then(data=>{console.log(data)})
+    })
 }
 
 
