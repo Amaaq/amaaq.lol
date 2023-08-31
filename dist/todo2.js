@@ -174,14 +174,14 @@ function showTodos(){
 function createProjectListElement(project,index){
     let li = document.createElement('li')
     li.addEventListener("click",()=>{
-        user.select(project.id)
+        user.select(project.projectId)
         showTodos()
         updateOptions()
     })
     li.appendChild(createProjectColorElement(project.color))
     li.appendChild(createProjectNameElement(project.name))
-    li.id = project.id
-    if(index!=0){li.appendChild(createProjectDeleteButton(project.id))}
+    li.id = project.projectId
+    if(index!=0){li.appendChild(createProjectDeleteButton(project.projectId))}
     return li
 }
 function createProjectNameElement(name){
