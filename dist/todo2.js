@@ -33,12 +33,12 @@ fetch('http://amaaq.lol/auth/protected',{
     greeting.textContent = `Mr. ${user.fname} ${user.lname.toUpperCase()}`
     user.initialize()
     user.select()
-    updateProjects()
+    showProjects()
     showTodos()
     updateOptions()
 })
 
-updateProjects()
+showProjects()
 logout.addEventListener("click",()=>{
     fetch('http://amaaq.lol/auth/logout',{
         method: 'POST',
@@ -81,12 +81,12 @@ projectForm[2].addEventListener("click",(e)=>{
         projectForm[0].style.borderColor = "red"
     }else {
         user.addProject(projectForm[0].value,projectForm[1].value)
-        projectForm.reset()
         user.select(user.projects[user.projects.length-1].projectId)
         hideProjectForm()
-        updateProjects()
-        updateOptions()
+        showProjects()
         showTodos()
+        updateOptions()
+        projectForm.reset()
     }
     
 })
@@ -100,12 +100,12 @@ todoForm[7].addEventListener("click",(e)=>{
         if(todoForm[4].value == "new" && todoForm[5].value != ""){
             user.addProject(todoForm[5].value,todoForm[6].value)
             user.projects[user.projects.length-1].addTodo(todoForm[0].value,todoForm[3].value || "NO DESCRIPTION AVAILABLE",todoForm[1].value || "no due date",todoForm[2].value)
-            updateProjects()
+            showProjects()
             user.select(user.projects[user.projects.length-1].projectId)
             showTodos()
         }else {
             user.projects.find(element=> element.projectId == todoForm[4].selectedOptions[0].value).addTodo(todoForm[0].value,todoForm[3].value || "NO DESCRIPTION AVAILABLE",todoForm[1].value || "no due date",todoForm[2].value)
-            updateProjects()
+            showProjects()
             showTodos()
         }
         todoForm.reset()
@@ -141,7 +141,7 @@ function showProjectForm(){
     projectForm[0].focus()
 }
 
-function updateProjects() {
+function showProjects() {
     projectsList.textContent = ""
     user.projects.forEach((project,index)=>{ 
         projectsList.appendChild(createProjectListElement(project,index))
@@ -201,7 +201,7 @@ function createProjectDeleteButton(id){
         e.stopPropagation()
         user.deleteProject(id)
         user.select()
-        updateProjects()
+        showProjects()
         showTodos()
         updateOptions()
     })
