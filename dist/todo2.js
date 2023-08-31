@@ -161,6 +161,7 @@ function updateProjects() {
             user.select()
             updateProjects()
             showTodos()
+            updateOptions()
         })
         li.appendChild(span)
         li.appendChild(h4)
@@ -177,37 +178,35 @@ function showTodos(){
     done.textContent = ""
     h2.textContent = user.selected.name
     user.selected.todos.forEach(todo=>{
-        
-            let li = createTodoListElement(todo.todoId)
-            let arr = createTodoDescriptionAndShowButton(todo.description)
-            li.appendChild(createTodoDeleteButton(todo.todoId))
-            li.appendChild(arr[1])
-            li.appendChild(createTodoTitleElement(todo.title))
-            li.appendChild(createTodoDateElement(todo.dueDate))
-            li.appendChild(arr[0])
-            switch (todo.status){
-                case "to-do" : {
-                    todoStatus.appendChild(li);
-                    break;
-                }
-                case "in-progress" : {
-                    inProgress.appendChild(li); 
-                    break;
-                }
-                case "done" : {
-                    done.appendChild(li); 
-                    break;
-                }
+        switch (todo.status){
+            case "to-do" : {
+                todoStatus.appendChild(createTodoListElement(todo));
+                break;
             }
-        })
-    }
+            case "in-progress" : {
+                inProgress.appendChild(createTodoListElement(todo)); 
+                break;
+            }
+            case "done" : {
+                done.appendChild(createTodoListElement(todo)); 
+                break;
+            }
+        }
+    })
+}
 
-function createTodoListElement(id){
+function createTodoListElement(todo){
     let li = document.createElement("li")
     li.setAttribute("draggable","true")
     li.addEventListener("dragstart",(e)=>{
-        e.dataTransfer.setData('text',id)
+        e.dataTransfer.setData('text',todo.todoId)
     })
+    let arr = createTodoDescriptionAndShowButton(todo.description)
+    li.appendChild(createTodoDeleteButton(todo.todoId))
+    li.appendChild(arr[1])
+    li.appendChild(createTodoTitleElement(todo.title))
+    li.appendChild(createTodoDateElement(todo.dueDate))
+    li.appendChild(arr[0])
     return li
 }
 function createTodoTitleElement(title){
