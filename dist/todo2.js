@@ -316,7 +316,7 @@ User.prototype.deleteProject = function (projectId){
 }
 
 function Project(name,color){
-    this.projectId = Date.now()
+    this.projectId = "p"+Date.now()
     this.name = name.toLowerCase();
     this.color = color;
     this.todos = []
@@ -331,7 +331,7 @@ Project.prototype.deleteTodo  = function (id){
     registerProjects()
 }
 function Todo(title,description,dueDate,priority){
-    this.todoId = Date.now()
+    this.todoId = "t"+Date.now()
     this.title = title.toLowerCase();
     this.description = description;
     this.dueDate = dueDate;
