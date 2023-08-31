@@ -39,80 +39,80 @@ fetch('http://amaaq.lol/auth/protected',{
 })
 
 updateProjects()
-        logout.addEventListener("click",()=>{
-            fetch('http://amaaq.lol/auth/logout',{
-                method: 'POST',
-            }).then(window.open('http://amaaq.lol',"_self"))
-        })
-        hideTodoForm()
+logout.addEventListener("click",()=>{
+    fetch('http://amaaq.lol/auth/logout',{
+        method: 'POST',
+    }).then(window.open('http://amaaq.lol',"_self"))
+})
+hideTodoForm()
+hideProjectForm()
+addTodoDiv.addEventListener("click",(e)=>{
+    showTodoForm()
+    hideProjectForm()
+})
+addProjectDiv.addEventListener("click",()=>{
+    showProjectForm()
+    hideTodoForm()
+})
+
+dropTargets.forEach(dropTarget => {
+    dropTarget.addEventListener('dragenter', dragEnter)
+    dropTarget.addEventListener('dragover', dragOver);
+    dropTarget.addEventListener('drop', drop);
+});
+
+
+todoForm[4].addEventListener("change",(e)=>{
+    if(e.currentTarget.value == "new"){
+        todoForm[5].disabled = false
+        todoForm[6].disabled = false
+    }else{
+        todoForm[5].disabled = true
+        todoForm[6].disabled = true
+    }
+});
+todoForm[8].addEventListener("click",hideTodoForm)
+
+projectForm[3].addEventListener("click",hideProjectForm)
+
+projectForm[2].addEventListener("click",(e)=>{
+    e.preventDefault()
+    if(projectForm[0].value == ""){
+        projectForm[0].style.borderColor = "red"
+    }else {
+        user.addProject(projectForm[0].value,projectForm[1].value)
+        projectForm.reset()
         hideProjectForm()
-        addTodoDiv.addEventListener("click",(e)=>{
-            showTodoForm()
-            hideProjectForm()
-        })
-        addProjectDiv.addEventListener("click",()=>{
-            showProjectForm()
-            hideTodoForm()
-        })
+        updateProjects()
+        updateOptions()
         
-        dropTargets.forEach(dropTarget => {
-            dropTarget.addEventListener('dragenter', dragEnter)
-            dropTarget.addEventListener('dragover', dragOver);
-            dropTarget.addEventListener('drop', drop);
-        });
-        
-        
-        todoForm[4].addEventListener("change",(e)=>{
-            if(e.currentTarget.value == "new"){
-                todoForm[5].disabled = false
-                todoForm[6].disabled = false
-            }else{
-                todoForm[5].disabled = true
-                todoForm[6].disabled = true
-            }
-        });
-        todoForm[8].addEventListener("click",hideTodoForm)
-        
-        projectForm[3].addEventListener("click",hideProjectForm)
-        
-        projectForm[2].addEventListener("click",(e)=>{
-            e.preventDefault()
-            if(projectForm[0].value == ""){
-                projectForm[0].style.borderColor = "red"
-            }else {
-                user.addProject(projectForm[0].value,projectForm[1].value)
-                projectForm.reset()
-                hideProjectForm()
-                updateProjects()
-                updateOptions()
-               
-            }
-            
-        })
-        todoForm[7].addEventListener("click",(e)=>{
-            e.preventDefault()
-            if(todoForm[0].value == ""){
-                todoForm[0].style.borderColor = "red"
-            }else if(todoForm[4].value == "new" && todoForm[5].value == "") {
-                todoForm[5].style.borderColor = "red"
-            }else {
-                if(todoForm[4].value == "new" && todoForm[5].value != ""){
-                    user.addProject(todoForm[5].value,todoForm[6].value)
-                    user.projects[user.projects.length-1].addTodo(todoForm[0].value,todoForm[3] || "NO DESCRIPTION AVAILABLE".value,todoForm[1].value || "no due date",todoForm[2].value)
-                    updateProjects()
-                    showTodos()
-                }else {
-                    user.projects.find(element=> element.projectId == todoForm[4].selectedOptions[0].value).addTodo(todoForm[0].value,todoForm[3].value || "NO DESCRIPTION AVAILABLE",todoForm[1].value || "no due date",todoForm[2].value)
-                    updateProjects()
-                    showTodos()
-                }
-                todoForm.reset()
-                todoForm[5].disabled = true
-                todoForm[6].disabled = true
-                hideTodoForm()
-                updateOptions()
-            }
-        })
+    }
+    
+})
+todoForm[7].addEventListener("click",(e)=>{
+    e.preventDefault()
+    if(todoForm[0].value == ""){
+        todoForm[0].style.borderColor = "red"
+    }else if(todoForm[4].value == "new" && todoForm[5].value == "") {
+        todoForm[5].style.borderColor = "red"
+    }else {
+        if(todoForm[4].value == "new" && todoForm[5].value != ""){
+            user.addProject(todoForm[5].value,todoForm[6].value)
+            user.projects[user.projects.length-1].addTodo(todoForm[0].value,todoForm[3] || "NO DESCRIPTION AVAILABLE".value,todoForm[1].value || "no due date",todoForm[2].value)
+            updateProjects()
+            showTodos()
+        }else {
+            user.projects.find(element=> element.projectId == todoForm[4].selectedOptions[0].value).addTodo(todoForm[0].value,todoForm[3].value || "NO DESCRIPTION AVAILABLE",todoForm[1].value || "no due date",todoForm[2].value)
+            updateProjects()
+            showTodos()
+        }
+        todoForm.reset()
+        todoForm[5].disabled = true
+        todoForm[6].disabled = true
+        hideTodoForm()
+        updateOptions()
+    }
+})
 
 
 
@@ -257,6 +257,7 @@ function updateOptions(){
     })
     str +='<option value="new" id="new-project">New Project</option>'
     options.innerHTML = str
+    options.selectedIndex = user.projects.findIndex(element=>element== user.selected)
 }
 
 function dragEnter(e) {
