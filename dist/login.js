@@ -16,10 +16,6 @@ let signUpSuccess = document.querySelector('#sign-up-success')
 let loginSuccess = document.querySelector('#login-success')
 
 
-
-
-document.addEventListener('DOMContentLoaded',()=>{
-    if(signInForm != null){
         signUpSubmit.addEventListener('click',(e)=>{
             e.preventDefault()
             fetch('http://amaaq.lol/auth/signup',{
@@ -78,14 +74,15 @@ document.addEventListener('DOMContentLoaded',()=>{
         signUpCancel.addEventListener('click',(e)=>{
             e.preventDefault()
             signUpForm.style.display = 'none'
+            signInForm.style.display = 'flex'
         })
         loginSuccess.addEventListener('click',(e)=>{
             e.preventDefault()
             signUpSuccess.style.display = 'none'
+            signInForm.style.display = 'flex'
         })
         signUpDiv.addEventListener('click',(e)=>{
             e.preventDefault()
             signUpForm.style.display = 'flex'
+            signInForm.style.display = 'none'
         })
-    }
-})
