@@ -99,7 +99,7 @@ todoForm[7].addEventListener("click",(e)=>{
     }else {
         if(todoForm[4].value == "new" && todoForm[5].value != ""){
             user.addProject(todoForm[5].value,todoForm[6].value)
-            user.projects[user.projects.length-1].addTodo(todoForm[0].value,todoForm[3] || "NO DESCRIPTION AVAILABLE",todoForm[1].value || "no due date",todoForm[2].value)
+            user.projects[user.projects.length-1].addTodo(todoForm[0].value,todoForm[3].value || "NO DESCRIPTION AVAILABLE",todoForm[1].value || "no due date",todoForm[2].value)
             updateProjects()
             user.select(user.projects[user.projects.length-1].projectId)
             showTodos()
