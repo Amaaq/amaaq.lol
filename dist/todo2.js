@@ -80,12 +80,13 @@ projectForm[2].addEventListener("click",(e)=>{
     if(projectForm[0].value == ""){
         projectForm[0].style.borderColor = "red"
     }else {
-        user.addProject(projectForm[0].value,projectForm[1].value)
         projectForm.reset()
+        user.addProject(projectForm[0].value,projectForm[1].value)
+        user.select(user.projects[user.project.length-1].projectId)
         hideProjectForm()
         updateProjects()
         updateOptions()
-        
+        showTodos()
     }
     
 })
@@ -151,6 +152,7 @@ function updateProjects() {
         h4.addEventListener("click",()=>{
             user.select(element.projectId)
             showTodos()
+            updateOptions()
         })
         span.style.backgroundColor = element.color
         icon.setAttribute("class","fa-solid fa-trash-can")
