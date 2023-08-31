@@ -149,14 +149,15 @@ function updateProjects() {
         let span = document.createElement('span')
         let icon = document.createElement('i')
         h4.textContent = element.name 
-        h4.addEventListener("click",()=>{
+        li.addEventListener("click",()=>{
             user.select(element.projectId)
             showTodos()
             updateOptions()
         })
         span.style.backgroundColor = element.color
         icon.setAttribute("class","fa-solid fa-trash-can")
-        icon.addEventListener("click",()=>{
+        icon.addEventListener("click",(e)=>{
+            e.stopPropagation()
             user.deleteProject(element.projectId)
             user.select()
             updateProjects()
